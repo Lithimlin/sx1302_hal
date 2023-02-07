@@ -1881,7 +1881,7 @@ int sx1302_fetch(uint8_t * nb_pkt) {
             return LGW_REG_ERROR;
         }
     } else {
-        printf("Note: remaining %u packets in RX buffer, do not fetch sx1302 yet...\n", rx_buffer.buffer_pkt_nb);
+        DEBUG_PRINTF("Note: remaining %u packets in RX buffer, do not fetch sx1302 yet...\n", rx_buffer.buffer_pkt_nb);
     }
 
     /* Return the number of packet fetched */
