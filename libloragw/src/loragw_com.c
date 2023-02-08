@@ -65,12 +65,12 @@ int lgw_com_open(lgw_com_type_t com_type, const char * com_path) {
     /* Check input parameters */
     CHECK_NULL(com_path);
     if ((com_type != LGW_COM_SPI) && (com_type != LGW_COM_USB)) {
-        DEBUG_MSG("ERROR: COMMUNICATION INTERFACE TYPE IS NOT SUPPORTED\n");
+        printf("ERROR: COMMUNICATION INTERFACE TYPE IS NOT SUPPORTED\n");
         return LGW_COM_ERROR;
     }
 
     if (_lgw_com_target != NULL) {
-        DEBUG_MSG("WARNING: CONCENTRATOR WAS ALREADY CONNECTED\n");
+        printf("WARNING: CONCENTRATOR WAS ALREADY CONNECTED\n");
         lgw_com_close();
     }
 
@@ -79,11 +79,11 @@ int lgw_com_open(lgw_com_type_t com_type, const char * com_path) {
 
     switch (com_type) {
         case LGW_COM_SPI:
-            printf("Opening SPI communication interface\n");
+            DEBUG_PRINTF("Opening SPI communication interface\n");
             com_stat = lgw_spi_open(com_path, &_lgw_com_target);
             break;
         case LGW_COM_USB:
-            printf("Opening USB communication interface\n");
+            DEBUG_PRINTF("Opening USB communication interface\n");
             com_stat = lgw_usb_open(com_path, &_lgw_com_target);
             break;
         default:
@@ -107,11 +107,11 @@ int lgw_com_close(void) {
 
     switch (_lgw_com_type) {
         case LGW_COM_SPI:
-            printf("Closing SPI communication interface\n");
+            DEBUG_PRINTF("Closing SPI communication interface\n");
             com_stat = lgw_spi_close(_lgw_com_target);
             break;
         case LGW_COM_USB:
-            printf("Closing USB communication interface\n");
+            DEBUG_PRINTF("Closing USB communication interface\n");
             com_stat = lgw_usb_close(_lgw_com_target);
             break;
         default:

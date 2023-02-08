@@ -72,7 +72,7 @@ int ad5338r_configure(int i2c_fd, uint8_t i2c_addr) {
         return LGW_I2C_ERROR;
     }
 
-    printf("INFO: AD5338R is configured\n");
+    DEBUG_PRINTF("INFO: AD5338R is configured\n");
 
     return LGW_I2C_SUCCESS;
 }

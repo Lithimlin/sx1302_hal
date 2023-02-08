@@ -1104,11 +1104,11 @@ int lgw_start(void) {
 
             err = stts751_configure(ts_fd, ts_addr);
             if (err != LGW_I2C_SUCCESS) {
-                printf("INFO: no temperature sensor found on port 0x%02X\n", ts_addr);
+                DEBUG_PRINTF("INFO: no temperature sensor found on port 0x%02X\n", ts_addr);
                 i2c_linuxdev_close(ts_fd);
                 ts_fd = -1;
             } else {
-                printf("INFO: found temperature sensor on port 0x%02X\n", ts_addr);
+                DEBUG_PRINTF("INFO: found temperature sensor on port 0x%02X\n", ts_addr);
                 break;
             }
         }
@@ -1140,7 +1140,7 @@ int lgw_start(void) {
                 printf("ERROR: AD5338R: failed to set DAC output to 0V\n");
                 return LGW_HAL_ERROR;
             }
-            printf("INFO: AD5338R: Set DAC output to 0x%02X 0x%02X\n", (uint8_t)VOLTAGE2HEX_H(0), (uint8_t)VOLTAGE2HEX_L(0));
+            DEBUG_PRINTF("INFO: AD5338R: Set DAC output to 0x%02X 0x%02X\n", (uint8_t)VOLTAGE2HEX_H(0), (uint8_t)VOLTAGE2HEX_L(0));
         }
     }
 
@@ -1419,7 +1419,7 @@ int lgw_send(struct lgw_pkt_tx_s * pkt_data) {
             printf("ERROR: failed to set voltage by ad5338r\n");
             return LGW_HAL_ERROR;
         }
-        printf("INFO: AD5338R: Set DAC output to 0x%02X 0x%02X\n", (uint8_t)VOLTAGE2HEX_H(2.51), (uint8_t)VOLTAGE2HEX_L(2.51));
+        DEBUG_PRINTF("INFO: AD5338R: Set DAC output to 0x%02X 0x%02X\n", (uint8_t)VOLTAGE2HEX_H(2.51), (uint8_t)VOLTAGE2HEX_L(2.51));
     }
 
     /* Start Listen-Before-Talk */
@@ -1464,9 +1464,9 @@ int lgw_send(struct lgw_pkt_tx_s * pkt_data) {
             return LGW_HAL_ERROR;
         }
         if (lbt_tx_allowed == true) {
-            printf("LBT: packet is allowed to be transmitted\n");
+            DEBUG_PRINTF("LBT: packet is allowed to be transmitted\n");
         } else {
-            printf("LBT: (ERROR) packet is NOT allowed to be transmitted\n");
+            DEBUG_PRINTF("LBT: (ERROR) packet is NOT allowed to be transmitted\n");
         }
 
         err = lgw_lbt_stop();

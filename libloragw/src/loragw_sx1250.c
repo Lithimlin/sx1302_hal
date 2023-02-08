@@ -237,7 +237,7 @@ int sx1250_setup(uint8_t rf_chain, uint32_t freq_hz, bool single_input_mode) {
 
     /* Select single input or differential input mode */
     if (single_input_mode == true) {
-        printf("INFO: Configuring SX1250_%u in single input mode\n", rf_chain);
+        DEBUG_PRINTF("INFO: Configuring SX1250_%u in single input mode\n", rf_chain);
         buff[0] = 0x08;
         buff[1] = 0xE2;
         buff[2] = 0x0D;
