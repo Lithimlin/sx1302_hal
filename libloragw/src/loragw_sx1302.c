@@ -1827,14 +1827,14 @@ int sx1302_arb_start(uint8_t version, const struct lgw_conf_ftime_s * ftime_cont
 
     /* Enable/Disable double demod for different timing set (best timestamp / best demodulation) - 1 bit per SF (LSB=SF5, MSB=SF12) => 0:Disable 1:Enable */
     if (ftime_context->enable == false) {
-        DEBUG_PRINTF("ARB: dual demodulation disabled for all SF\n");
+        DEBUG_MSG("ARB: dual demodulation disabled for all SF\n");
         sx1302_arb_debug_write(3, 0x00); /* double demod disabled for all SF */
     } else {
         if (ftime_context->mode == LGW_FTIME_MODE_ALL_SF) {
-            DEBUG_PRINTF("ARB: dual demodulation enabled for all SF\n");
+            DEBUG_MSG("ARB: dual demodulation enabled for all SF\n");
             sx1302_arb_debug_write(3, 0xFF); /* double demod enabled for all SF */
         } else if (ftime_context->mode == LGW_FTIME_MODE_HIGH_CAPACITY) {
-            DEBUG_PRINTF("ARB: dual demodulation enabled for SF5 -> SF10\n");
+            DEBUG_MSG("ARB: dual demodulation enabled for SF5 -> SF10\n");
             sx1302_arb_debug_write(3, 0x3F); /* double demod enabled for SF10 <- SF5 */
         } else {
             printf("ERROR: fine timestamp mode is not supported (%d)\n", ftime_context->mode);
