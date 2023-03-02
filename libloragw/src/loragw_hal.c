@@ -1283,7 +1283,8 @@ int lgw_receive(uint8_t max_pkt, struct lgw_pkt_rx_s *pkt_data) {
     }
     if (nb_pkt_fetched > max_pkt) {
         nb_pkt_left = nb_pkt_fetched - max_pkt;
-        printf("WARNING: not enough space allocated, fetched %d packet(s), %d will be left in RX buffer\n", nb_pkt_fetched, nb_pkt_left);
+        DEBUG_PRINTF("WARNING: not enough space allocated, fetched %d packet(s), %d will be left in RX buffer\n", nb_pkt_fetched, nb_pkt_left);
+        (void)nb_pkt_left;
     }
 
     /* Apply RSSI temperature compensation */
